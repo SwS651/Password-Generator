@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="segment">
+            <h1>
+
+                Password Generator
+            </h1>
+        </div>
+        <div>
+            <div>
+
+                <p>Please choose password length:</p>
+                <input type="radio" id="pwd6" name="pwdlength" value="6" checked/>
+                <label for="pwd6">6</label>
+                <input type="radio" id="pwd10" name="pwdlength" value="10" />
+                <label for="pwd10">10</label>
+                <input type="radio" id="pwd12" name="pwdlength" value="12" />
+                <label for="pwd12">12</label>
+            </div>
+
+
+            <br>  
+            <div class="" style="position: relative;">
+
+                <input type="text" name="password" id="password" value=""/>
+                <input class="showpwd" type="checkbox" name="chkPassword" id="chkPassword" onclick="isVisible()" checked>
+            </div>
+        
+            <button  id="btnCopy" onclick="pwdCopy()" onmouseout="this.innerText = 'Copy'">
+                Copy
+            </button>
+
+            <button onclick="btnSubmit()">Generate</button>
+
+            <div style="margin:30px 0px;">
+
+                <p style="cursor: pointer;" onclick="isExpand()">Password Setting  <span id="expand" >+</span></p>
+                <div id="setting" style="visibility: hidden;">
+                    <input type="checkbox" name="pwdsetting" id="" value="numbers" checked>
+                    <label for="">Numbers</label><br/>
+                    <input type="checkbox" name="pwdsetting" id="" value="uppercase" checked>
+                    <label for="">Uppercase</label><br/>
+                    <input type="checkbox" name="pwdsetting" id="" value="lowercase" checked>
+                    <label for="">Lowercase</label><br/>
+                    <input type="checkbox" name="pwdsetting" id="" value="symbols" checked>
+                    <label for="">Symbols</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="./generator.js">
+    </script>
+    <script>
+        var expand = document.getElementById('expand');
+        var setting = document.getElementById('setting');
+        var pwdVisible = document.getElementById('chkPassword');
+        var password = document.getElementById('password');
+
+        function isExpand() {
+            if (setting.style.visibility=='hidden'){
+                setting.style.visibility='visible';
+                expand.innerText='-';
+            }
+            else{
+                setting.style.visibility='hidden'
+                expand.innerText='+';
+            }
+        }
+
+        function isVisible() {
+            if(pwdVisible.checked)
+                password.type = 'text';
+            else
+                password.type = 'password';
+        }
+
+        function pwdCopy() {
+            if(password.value!=''){
+                password.select();
+                password.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(password.value);
+                
+                var btnCopy = document.getElementById("btnCopy");
+                btnCopy.innerText = "Copied"
+            }
+        }
+
+
+    </script>
+
+
+
+
+
+
+
+
+    <style>
+        body,html {
+            background-color: '#EBECFO';
+        }
+        body{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 16px;
+        }
+        body,p{
+            color: '#BABECC';
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .container{
+            padding: 16px;
+            width: 320px;
+            margin: 0 auto;
+        }
+        .segment{
+            /* padding: 320px; */
+            text-align: center;
+        }
+
+        button, input{
+            border: 0;
+            outline: 0;
+            font-size: 16px;
+            border-radius: 320px;
+            padding: 16px;
+            background-color: '#EBECFO';
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        input[type=text],input[type=password]{
+            margin-right: 8px;
+            margin-bottom: 20px;
+            box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 0px #fff;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.4s ease-in-out;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .showpwd{
+            position: absolute;
+            right: 2em;
+            top: 16px;
+            transform: scale(2);
+            outline: none;
+        }
+        input:focus{
+            box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #fff;
+        }
+
+
+
+        button{
+            color: #61677c;
+            font-weight: bold;
+            box-shadow: -5px -5px 20px #fff, 5px 5px 20px #BABECC;
+            transition: all 0.4s ease-in-out;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover{
+            box-shadow: -2px -2px 5px #fff, 2px 2px 5px #BABECC;
+        }
+        button:active{
+            box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+        }
+
+    </style>
+</html>
