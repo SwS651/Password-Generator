@@ -1,5 +1,5 @@
 # Password-Generator
-
+Demo: []([https://duckduckgo.com](https://sws651.github.io/Password-Generator/)).
 This project involves:
 language: html, css, javascript
 Function: Randomly generate a password
